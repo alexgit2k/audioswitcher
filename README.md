@@ -1,6 +1,7 @@
 # AudioSwitcher
 
-Quickly switch active audio devices for example from webcam & speakers to headset and back
+Quickly switch active audio devices for example from webcam & speakers to headset and back. \
+Change output volume levels depending on active audio device.
 
 ![Screenshot](screenshot.png)
 
@@ -9,6 +10,8 @@ The correct device-IDs have to be configured in audioswitcher.ini.
 
 For the device-IDs start SoundVolumeView in the subdirectory SoundVolumeView, sort entries after column "Type" and go to the entries with "Type" = device,
 click on the right mouse button, select "Properties" and then use the entry for "Command-Line Friendly ID".
+
+Volume levels, texts, font and fontsizes can also be configured in audioswitcher.ini.
 
 ## Download
 Windows: ![audioswitcher.zip](https://github.com/alexgit2k/audioswitcher/releases/latest/download/audioswitcher.zip)

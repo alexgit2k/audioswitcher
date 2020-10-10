@@ -9,15 +9,21 @@
 
 Global WindowMain
 
-Global ButtonDevices1, ButtonDevices2
+Global ButtonDevices1, ButtonDevices2, HeadLineDevices, ButtonVolumes1, ButtonVolumes2, HeadlineVolumes
 
 
-Procedure OpenWindowMain(x = 0, y = 0, width = 250, height = 150)
-  WindowMain = OpenWindow(#PB_Any, x, y, width, height, "AudioSwitcher", #PB_Window_SystemMenu | #PB_Window_TitleBar | #PB_Window_ScreenCentered)
-  ;ButtonDevices1 = ButtonImageGadget(#PB_Any, 10, 10, 230, 60, 0, #PB_Button_Toggle)
-  ;ButtonDevices2 = ButtonImageGadget(#PB_Any, 10, 80, 230, 60, 0, #PB_Button_Toggle)
-  ButtonDevices1 = BevelButton::New(10, 10, 230, 60, 0, "Webcam", font, #PB_Button_Toggle)
-  ButtonDevices2 = BevelButton::New(10, 80, 230, 60, 0, "Headset", font, #PB_Button_Toggle)
+Procedure OpenWindowMain(x = 0, y = 0, width = 400, height = 180)
+  WindowMain = OpenWindow(#PB_Any, x, y, width, height, "AudioSwitcher", #PB_Window_SystemMenu | #PB_Window_TitleBar | #PB_Window_ScreenCentered | #PB_Window_Invisible)
+  ;ButtonDevices1 = ButtonImageGadget(#PB_Any, 10, 40, 230, 60, 0, #PB_Button_Toggle)
+  ;ButtonDevices2 = ButtonImageGadget(#PB_Any, 10, 110, 230, 60, 0, #PB_Button_Toggle)
+  ButtonDevices1 = BevelButton::New(10, 40, 230, 60, 0, "Webcam", font, #PB_Button_Toggle)
+  ButtonDevices2 = BevelButton::New(10, 110, 230, 60, 0, "Headset", font, #PB_Button_Toggle)
+  HeadlineDevices = TextGadget(#PB_Any, 10, 10, 230, 25, "Devices", #PB_Text_Center)
+  ;ButtonVolumes1 = ButtonImageGadget(#PB_Any, 250, 40, 140, 60, 0, #PB_Button_Toggle)
+  ;ButtonVolumes2 = ButtonImageGadget(#PB_Any, 250, 110, 140, 60, 0, #PB_Button_Toggle)
+  ButtonVolumes1 = BevelButton::New(250, 40, 140, 60, 0, "15", font, #PB_Button_Toggle)
+  ButtonVolumes2 = BevelButton::New(250, 110, 140, 60, 0, "5", font, #PB_Button_Toggle)
+  HeadlineVolumes = TextGadget(#PB_Any, 250, 10, 140, 25, "Volumes", #PB_Text_Center)
 EndProcedure
 
 Procedure WindowMain_Events(event)
