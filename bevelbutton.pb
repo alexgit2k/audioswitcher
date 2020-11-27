@@ -7,17 +7,23 @@ DeclareModule BevelButton
     height.i
     text.s
     font.i
+    color.i
   EndStructure
+  
+  Global NewMap Gadget2BevelButton()
   
   Declare New(x, y, width, height, image, text.s, font = 0, flags = 0)
   Declare Delete(*button.button)
   Declare Redraw(*button.button)
   Declare Enable(*button.button)
+  Declare ColorDark(*button.button)
+  Declare ColorNormal(*button.button)
   Declare Disable(*button.button)
   Declare GetGadgetID(*button.button)
   Declare SetText(*button.button, text.s, font = 0)
   Declare.s GetText(*button.button)
   Declare SetFont(*button.button, font)
+  Declare GetButton(gadget)
 EndDeclareModule
 
 Module BevelButton
@@ -29,8 +35,10 @@ Module BevelButton
     *button\height = height
     *button\font = font
     *button\text = text
+    *button\color = RGB(0, 255, 0)
     
     Redraw(*button)
+    Gadget2BevelButton(Str(*button\gadget)) = *button
     ProcedureReturn *button
   EndProcedure
   
@@ -43,7 +51,7 @@ Module BevelButton
   
     ; Button state
     If GetGadgetState(*button\gadget) = #True
-      color = RGB(0, 255, 0)
+      color = *button\color
     Else
       color = GetSysColor_(#COLOR_BTNFACE)
     EndIf
@@ -66,6 +74,16 @@ Module BevelButton
   
   Procedure Enable(*button.button)
     SetGadgetState(*button\gadget, #True)
+    Redraw(*button)
+  EndProcedure
+  
+  Procedure ColorDark(*button.button)
+    *button\color = RGB(0, 150, 0)
+    Redraw(*button)
+  EndProcedure
+  
+  Procedure ColorNormal(*button.button)
+    *button\color = RGB(0, 255, 0)
     Redraw(*button)
   EndProcedure
   
@@ -92,6 +110,10 @@ Module BevelButton
   
   Procedure SetFont(*button.button, font)
     *button\font = font
-	Redraw(*button)
+    Redraw(*button)
+  EndProcedure
+  
+  Procedure GetButton(gadget)
+    ProcedureReturn Gadget2BevelButton(Str(gadget))
   EndProcedure
 EndModule

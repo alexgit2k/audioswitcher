@@ -88,6 +88,10 @@ Repeat
           BevelButton::Enable(ButtonVolumes2)
           BevelButton::Disable(ButtonVolumes1)
       EndSelect
+      ; Dark button
+      If BevelButton::GetButton(EventGadget())
+        BevelButton::ColorDark(BevelButton::GetButton(EventGadget()))
+      EndIf
       LockWindowUpdate_(0)
       UpdateWindow_(WindowID(WindowMain))
       
@@ -106,6 +110,11 @@ Repeat
           ; Set Volume
           SoundDevice("SetVolume", Config$(Config$("lastDevice") + "Speaker"), Config$(Config$("lastDevice") + Config$("lastVolume") + "Value"), True)
       EndSelect
+
+      ; Finished setting
+      If BevelButton::GetButton(EventGadget())
+        BevelButton::ColorNormal(BevelButton::GetButton(EventGadget()))
+      EndIf
 
   EndSelect
 Until Event = #PB_Event_CloseWindow
@@ -129,7 +138,7 @@ Procedure SoundDevice(Command$, Device$, Param$ = "", Wait = #False)
   allParams$ = "/" + Command$ + " " + Chr(34) + Device$ + Chr(34) + " " + Param$
   ; Flags
   Flags = 0
-  If Wait = True
+  If Wait = #True
     Flags = #PB_Program_Wait
   EndIf
   ; Run SoundVolumeView
@@ -174,7 +183,7 @@ Procedure WritePreference(Key$, Device$)
   ClosePreferences()
 EndProcedure
 
-; IDE Options = PureBasic 5.72 (Windows - x86)
+; IDE Options = PureBasic 5.73 LTS (Windows - x86)
 ; CursorPosition = 61
 ; FirstLine = 21
 ; Folding = -
