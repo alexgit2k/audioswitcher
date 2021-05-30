@@ -31,6 +31,9 @@ fontHeadline = FontID(gadgetFont)
 
 ; Window
 OpenWindowMain()
+If Config$("windowOnTop") = "true"
+  StickyWindow(WindowMain, #True)
+EndIf
 ; Set text
 SetGadgetFont(HeadlineDevices, fontHeadline)
 SetGadgetText(HeadlineDevices, Config$("devicesHeadline"))
@@ -254,8 +257,8 @@ Procedure.s findDevice(device.s, type.s)
 EndProcedure
 
 ; IDE Options = PureBasic 5.73 LTS (Windows - x86)
-; CursorPosition = 61
-; FirstLine = 21
+; CursorPosition = 33
+; FirstLine = 8
 ; Folding = -
 ; EnableXP
 ; UseIcon = icon.ico
